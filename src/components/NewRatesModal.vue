@@ -111,6 +111,7 @@
           </v-col>
           <v-col class="py-0">
             <v-select
+              v-if="form.is_group"
               :items="groupSizes"
               label="Group Size"
               v-model="form.group"
