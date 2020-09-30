@@ -36,11 +36,11 @@
           color="primary"
           @click="showRate(item)"
         >
-          fas fa-info-circle
+          fas fa-dollar-sign
         </v-icon>
         <v-icon
           small
-          color="red"
+          color="primary"
           @click="deleteItem(item)"
         >
           fas fa-trash
@@ -94,7 +94,7 @@ export default {
     showNewProvider () {
       const params = {
         id: 0,
-        title: null,
+        // title: null,
         firstName: null,
         lastName: null,
         address_1: null,
@@ -106,7 +106,7 @@ export default {
         phoneMobile: null,
         email: null,
         legacySystemId: null,
-        certification: null
+        disciplines: null
       }
       this.$store.dispatch('setProvider', params)
       this.$router.push({
@@ -124,7 +124,7 @@ export default {
       if (success) {
         const snackData = {
           value: true,
-          color: 'success',
+          color: 'primary',
           text: message
         }
         await this.$store.dispatch('setSnackData', snackData)
@@ -137,7 +137,14 @@ export default {
         await this.$store.dispatch('setSnackData', snackData)
       }
     },
-    showRate () {}
+    showRate (item) {
+      this.$router.push({
+        name: 'rates',
+        params: {
+          id: item.id
+        }
+      })
+    }
   }
 }
 </script>

@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '@/views/Home.vue'
 import Providers from '@/views/Providers'
 import NewProvider from '@/views/NewProvider'
+import Rates from '@/views/Rates'
 
 Vue.use(VueRouter)
 
@@ -18,9 +19,15 @@ const routes = [
     component: Providers
   },
   {
-    path: '/providers/new',
+    path: '/new-rovider',
     name: 'newProvider',
     component: NewProvider
+  },
+  {
+    path: '/providers/rates/:id',
+    name: 'rates',
+    component: Rates,
+    props: true
   }
 ]
 

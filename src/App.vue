@@ -3,7 +3,7 @@
     <v-app-bar app color="primary" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <div class="d-flex align-center">
-        <h2>Provider Rate</h2>
+        <h2>Providers</h2>
       </div>
       <v-spacer></v-spacer>
     </v-app-bar>

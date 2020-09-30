@@ -4,10 +4,10 @@
       <v-row>
         <v-col>
           <v-select
-            v-model="form.certification"
-            :items="certifications"
+            v-model="form.disciplines"
+            :items="disciplines"
             chips
-            label="Certification"
+            label="Disciplines"
             multiple
             dense
             small-chips
@@ -31,9 +31,9 @@ export default {
   data: () => ({
     valid: false,
     form: {
-      certification: []
+      disciplines: []
     },
-    certifications: ['ST', 'PT', 'OT', 'LCSW']
+    disciplines: ['ST', 'PT', 'OT', 'LCSW']
   }),
   computed: {
     ...mapGetters({
@@ -61,7 +61,7 @@ export default {
       if (success) {
         const snackData = {
           value: true,
-          color: 'success',
+          color: 'primary',
           text: message
         }
         await this.$store.dispatch('setSnackData', snackData)
