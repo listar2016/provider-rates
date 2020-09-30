@@ -1,32 +1,46 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-app-bar app color="primary" dark>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <div class="d-flex align-center">
+        <h2>Provider Rate</h2>
+      </div>
+      <v-spacer></v-spacer>
+    </v-app-bar>
+    <v-navigation-drawer v-model="drawer" app>
+      <Sidebar />
+    </v-navigation-drawer>
+    <v-main>
+      <v-container fluid>
+        <router-view></router-view>
+      </v-container>
+    </v-main>
+    <v-snackbar
+      v-model="snackData.value"
+      right
+      top
+      :color="snackData.color"
+    >
+      {{ snackData.text }}
+    </v-snackbar>
+  </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<script>
+import Sidebar from '@/components/layout/Sidebar'
+import { mapGetters } from 'vuex'
+export default {
+  name: 'App',
+  components: {
+    Sidebar
+  },
+  data: () => ({
+    drawer: null
+  }),
+  computed: {
+    ...mapGetters({
+      snackData: 'snackData'
+    })
   }
 }
-</style>
+</script>
