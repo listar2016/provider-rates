@@ -21,7 +21,8 @@ const routes = [
   {
     path: '/new-provider',
     name: 'newProvider',
-    component: NewProvider
+    component: NewProvider,
+    props: true
   },
   {
     path: '/providers/rates/:id',

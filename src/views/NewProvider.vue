@@ -38,6 +38,11 @@ import ProviderInformation from '@/components/ProviderInformation'
 import Disciplines from '@/components/Disciplines'
 export default {
   name: 'NewProvider',
+  props: {
+    provider: {
+      type: Object
+    }
+  },
   components: {
     ProviderInformation,
     Disciplines
@@ -45,6 +50,9 @@ export default {
   data: () => ({
     el: 1
   }),
+  created () {
+    this.$store.dispatch('setProvider', this.provider)
+  },
   methods: {
     next () {
       this.el++

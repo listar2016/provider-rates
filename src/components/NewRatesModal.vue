@@ -145,7 +145,7 @@
             <v-select
               v-if="form.is_bilingual"
               :items="languages"
-              label="Bilingual"
+              label="Language"
               v-model="form.bilingual"
               dense
               :error-messages="bilingualErrors"

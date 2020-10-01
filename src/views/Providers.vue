@@ -108,15 +108,23 @@ export default {
         legacySystemId: null,
         disciplines: null
       }
-      this.$store.dispatch('setProvider', params)
+      // this.$store.dispatch('setProvider', params)
       this.$router.push({
-        name: 'newProvider'
+        name: 'newProvider',
+        params: {
+          provider: params
+        }
       })
     },
     editItem (item) {
-      this.$store.dispatch('setProvider', { ...item })
+      // this.$store.dispatch('setProvider', { ...item })
       this.$router.push({
-        name: 'newProvider'
+        name: 'newProvider',
+        params: {
+          provider: {
+            ...item
+          }
+        }
       })
     },
     async deleteItem (item) {
