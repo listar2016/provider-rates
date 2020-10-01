@@ -27,6 +27,7 @@ export default new Vuex.Store({
     disciplines: ['ST', 'OT', 'PT', 'LBA', 'RBT'],
     services: ['Speech Therapy', 'Occupational Therapy Evaluation', 'Psychological Evaluation'],
     programs: ['EI', 'SEIT', 'CPSE'],
+    locations: ['Onsite', 'Offsite'],
     unitTypes: ['Assessment', 'Hourly Service Provision', 'EI Basic Service Provision', 'EI Extended Service Provision', 'Service Coordination'],
     languages: ['Spanish', 'Russian', 'Mandarin', 'Polish', 'Portuguese'],
     snackData: {
@@ -148,6 +149,7 @@ export default new Vuex.Store({
     programs: ({ programs }) => programs,
     unitTypes: ({ unitTypes }) => unitTypes,
     languages: ({ languages }) => languages,
+    locations: ({ locations }) => locations,
     rates: ({ rates }) => rates
   },
   modules: {}

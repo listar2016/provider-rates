@@ -1,184 +1,168 @@
 <template>
-  <v-row>
-    <v-col
-      cols="12"
-      lg="9"
-      xl="6"
-      class="mx-auto"
+  <v-form v-model="valid">
+      <v-row>
+      <v-col
+        cols="12"
+        md="6"
+      >
+        <v-text-field
+          v-model="form.firstName"
+          label="First Name"
+          dense
+          :error-messages="firstNameErrors"
+          @input="$v.form.firstName.$touch()"
+          @blur="$v.form.firstName.$touch()"
+        ></v-text-field>
+      </v-col>
+      <v-col
+        cols="12"
+        md="6"
+      >
+        <v-text-field
+          v-model="form.lastName"
+          label="Last Name"
+          dense
+          :error-messages="lastNameErrors"
+          @input="$v.form.lastName.$touch()"
+          @blur="$v.form.lastName.$touch()"
+        ></v-text-field>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <v-text-field
+          v-model="form.address_1"
+          label="Street address line 1"
+          dense
+          :error-messages="addressOneErrors"
+          @input="$v.form.address_1.$touch()"
+          @blur="$v.form.address_1.$touch()"
+        ></v-text-field>
+      </v-col>
+      <v-col>
+        <v-text-field
+          v-model="form.address_2"
+          label="Street address line 2"
+          dense
+        ></v-text-field>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col
+        cols="12"
+        md="6"
+      >
+        <v-text-field
+          v-model="form.city"
+          label="City"
+          dense
+          :error-messages="cityErrors"
+          @input="$v.form.city.$touch()"
+          @blur="$v.form.city.$touch()"
+        ></v-text-field>
+      </v-col>
+      <v-col
+        cols="12"
+        md="3"
+      >
+        <v-select
+          :items="usStates"
+          label="State"
+          v-model="form.state"
+          dense
+          :error-messages="stateErrors"
+          @change="$v.form.state.$touch()"
+          @blur="$v.form.state.$touch()"
+        ></v-select>
+      </v-col>
+      <v-col
+        cols="12"
+        md="3"
+      >
+        <v-text-field
+          v-model="form.zipCode"
+          label="Zip code"
+          dense
+          :error-messages="zipCodeErrors"
+          @input="$v.form.zipCode.$touch()"
+          @blur="$v.form.zipCode.$touch()"
+          v-mask="maskZipCode"
+        ></v-text-field>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col
+        cols="12"
+        md="6"
+      >
+        <v-text-field
+          v-model="form.phoneHome"
+          label="Home phone"
+          dense
+          :error-messages="phoneHomeErrors"
+          @input="$v.form.phoneHome.$touch()"
+          @blur="$v.form.phoneHome.$touch()"
+          v-mask="maskPhone"
+        ></v-text-field>
+      </v-col>
+      <v-col
+        cols="12"
+        md="6"
+      >
+        <v-text-field
+          v-model="form.phoneMobile"
+          label="Mobile phone"
+          dense
+          :error-messages="phoneMobileErrors"
+          @input="$v.form.phoneMobile.$touch()"
+          @blur="$v.form.phoneMobile.$touch()"
+          v-mask="maskPhone"
+        ></v-text-field>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col
+        cols="12"
+        md="6"
+      >
+        <v-text-field
+          v-model="form.email"
+          label="Email address"
+          dense
+          :error-messages="emailErrors"
+          @input="$v.form.email.$touch()"
+          @blur="$v.form.email.$touch()"
+        ></v-text-field>
+      </v-col>
+      <v-col
+        cols="12"
+        md="6"
+      >
+        <v-text-field
+          v-model="form.legacySystemId"
+          label="Legacy System Id"
+          dense
+          :error-messages="legacySystemIdErrors"
+          @input="$v.form.legacySystemId.$touch()"
+          @blur="$v.form.legacySystemId.$touch()"
+        ></v-text-field>
+      </v-col>
+    </v-row>
+    <v-btn
+      color="primary"
+      @click="next"
+      :disabled="!valid"
     >
-      <v-form v-model="valid">
-        <!-- <v-row>
-          <v-col>
-            <v-text-field
-              v-model="form.title"
-              label="Title"
-              dense
-              :error-messages="titleErrors"
-              @input="$v.form.title.$touch()"
-              @blur="$v.form.title.$touch()"
-            ></v-text-field>
-          </v-col>
-        </v-row> -->
-        <v-row>
-          <v-col
-            cols="12"
-            md="6"
-          >
-            <v-text-field
-              v-model="form.firstName"
-              label="First Name"
-              dense
-              :error-messages="firstNameErrors"
-              @input="$v.form.firstName.$touch()"
-              @blur="$v.form.firstName.$touch()"
-            ></v-text-field>
-          </v-col>
-          <v-col
-            cols="12"
-            md="6"
-          >
-            <v-text-field
-              v-model="form.lastName"
-              label="Last Name"
-              dense
-              :error-messages="lastNameErrors"
-              @input="$v.form.lastName.$touch()"
-              @blur="$v.form.lastName.$touch()"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <v-text-field
-              v-model="form.address_1"
-              label="Street address line 1"
-              dense
-              :error-messages="addressOneErrors"
-              @input="$v.form.address_1.$touch()"
-              @blur="$v.form.address_1.$touch()"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <v-text-field
-              v-model="form.address_2"
-              label="Street address line 2"
-              dense
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col
-            cols="12"
-            md="6"
-          >
-            <v-text-field
-              v-model="form.city"
-              label="City"
-              dense
-              :error-messages="cityErrors"
-              @input="$v.form.city.$touch()"
-              @blur="$v.form.city.$touch()"
-            ></v-text-field>
-          </v-col>
-          <v-col
-            cols="12"
-            md="3"
-          >
-            <v-select
-              :items="usStates"
-              label="State"
-              v-model="form.state"
-              dense
-              :error-messages="stateErrors"
-              @change="$v.form.state.$touch()"
-              @blur="$v.form.state.$touch()"
-            ></v-select>
-          </v-col>
-          <v-col
-            cols="12"
-            md="3"
-          >
-            <v-text-field
-              v-model="form.zipCode"
-              label="Zip code"
-              dense
-              :error-messages="zipCodeErrors"
-              @input="$v.form.zipCode.$touch()"
-              @blur="$v.form.zipCode.$touch()"
-              v-mask="maskZipCode"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col
-            cols="12"
-            md="6"
-          >
-            <v-text-field
-              v-model="form.phoneHome"
-              label="Home phone"
-              dense
-              :error-messages="phoneHomeErrors"
-              @input="$v.form.phoneHome.$touch()"
-              @blur="$v.form.phoneHome.$touch()"
-              v-mask="maskPhone"
-            ></v-text-field>
-          </v-col>
-          <v-col
-            cols="12"
-            md="6"
-          >
-            <v-text-field
-              v-model="form.phoneMobile"
-              label="Mobile phone"
-              dense
-              :error-messages="phoneMobileErrors"
-              @input="$v.form.phoneMobile.$touch()"
-              @blur="$v.form.phoneMobile.$touch()"
-              v-mask="maskPhone"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col
-            cols="12"
-            md="6"
-          >
-            <v-text-field
-              v-model="form.email"
-              label="Email address"
-              dense
-              :error-messages="emailErrors"
-              @input="$v.form.email.$touch()"
-              @blur="$v.form.email.$touch()"
-            ></v-text-field>
-          </v-col>
-          <v-col
-            cols="12"
-            md="6"
-          >
-            <v-text-field
-              v-model="form.legacySystemId"
-              label="Legacy System Id"
-              dense
-              :error-messages="legacySystemIdErrors"
-              @input="$v.form.legacySystemId.$touch()"
-              @blur="$v.form.legacySystemId.$touch()"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-btn
-          color="primary"
-          @click="next"
-          :disabled="!valid"
-        >
-          Next
-        </v-btn>
-      </v-form>
-    </v-col>
-  </v-row>
+      Next
+    </v-btn>
+    <v-btn
+      color="primary"
+      text
+      @click="$emit('close')"
+    >
+      Cancel
+    </v-btn>
+  </v-form>
 </template>
 <script>
 import { validationMixin } from 'vuelidate'
@@ -213,12 +197,6 @@ export default {
       usStates: 'usStates',
       provider: 'provider'
     }),
-    // titleErrors () {
-    //   const errors = []
-    //   if (!this.$v.form.title.$dirty) return errors
-    //   !this.$v.form.title.required && errors.push('Title is required')
-    //   return errors
-    // },
     firstNameErrors () {
       const errors = []
       if (!this.$v.form.firstName.$dirty) return errors
@@ -283,7 +261,6 @@ export default {
   },
   validations: {
     form: {
-      // title: { required },
       firstName: { required },
       lastName: { required },
       address_1: { required },

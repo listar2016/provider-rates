@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title class="headline">
-      Add new rates
+      Add new rate
     </v-card-title>
     <v-card-text>
       <v-form v-model="valid">
@@ -59,8 +59,6 @@
               @blur="$v.form.discipline.$touch()"
             ></v-select>
           </v-col>
-        </v-row>
-        <v-row>
           <v-col>
             <v-select
               :items="services"
@@ -77,12 +75,23 @@
           <v-col>
             <v-select
               :items="programs"
-              label="Programs"
+              label="Program"
               v-model="form.program"
               dense
               :error-messages="programErrors"
               @change="$v.form.program.$touch()"
               @blur="$v.form.program.$touch()"
+            ></v-select>
+          </v-col>
+          <v-col>
+            <v-select
+              :items="locations"
+              label="Location"
+              v-model="form.location"
+              dense
+              :error-messages="locationErrors"
+              @change="$v.form.location.$touch()"
+              @blur="$v.form.location.$touch()"
             ></v-select>
           </v-col>
         </v-row>
@@ -100,7 +109,7 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col class="py-0">
+          <v-col>
             <v-checkbox
               v-model="form.is_group"
               label="Group"
@@ -109,7 +118,7 @@
               class="mt-0"
             ></v-checkbox>
           </v-col>
-          <v-col class="py-0">
+          <v-col>
             <v-select
               v-if="form.is_group"
               :items="groupSizes"
@@ -123,7 +132,7 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col class="py-0">
+          <v-col>
             <v-checkbox
               v-model="form.is_bilingual"
               label="Bilingual"
@@ -131,23 +140,18 @@
               hide-details="auto"
               class="mt-0"
             ></v-checkbox>
-            <v-radio-group
+          </v-col>
+          <v-col>
+            <v-select
               v-if="form.is_bilingual"
+              :items="languages"
+              label="Bilingual"
               v-model="form.bilingual"
-              row
-              class="mt-0 pl-5"
+              dense
               :error-messages="bilingualErrors"
               @change="$v.form.bilingual.$touch()"
               @blur="$v.form.bilingual.$touch()"
-            >
-              <v-radio
-                v-for="language in languages"
-                :key="language"
-                :label="language"
-                :value="language"
-                class="mb-1"
-              ></v-radio>
-            </v-radio-group>
+            ></v-select>
           </v-col>
         </v-row>
         <v-row>
@@ -204,6 +208,7 @@ export default {
       discipline: null,
       service: null,
       program: null,
+      location: null,
       unit_type: null,
       group: null,
       is_group: false,
@@ -220,7 +225,8 @@ export default {
       services: 'services',
       programs: 'programs',
       unitTypes: 'unitTypes',
-      languages: 'languages'
+      languages: 'languages',
+      locations: 'locations'
     }),
     effectiveDateErrors () {
       const errors = []
@@ -237,7 +243,7 @@ export default {
     disciplineErrors () {
       const errors = []
       if (!this.$v.form.discipline.$dirty) return errors
-      !this.$v.form.tax_status.required && errors.push('Tax status is required')
+      !this.$v.form.discipline.required && errors.push('Discipline is required')
       return errors
     },
     serviceErrors () {
@@ -257,6 +263,12 @@ export default {
       const errors = []
       if (!this.$v.form.program.$dirty) return errors
       !this.$v.form.program.required && errors.push('Program is required')
+      return errors
+    },
+    locationErrors () {
+      const errors = []
+      if (!this.$v.form.location.$dirty) return errors
+      !this.$v.form.location.required && errors.push('Locations is required')
       return errors
     },
     unitTypeErrors () {
@@ -285,6 +297,7 @@ export default {
       discipline: { required },
       service: { required },
       program: { required },
+      location: { required },
       unit_type: { required },
       rate_amount: {
         required,
@@ -304,7 +317,7 @@ export default {
   },
   methods: {
     changeDate () {
-      this.$v.form.rate_amount.$touch()
+      this.$v.form.effective_date.$touch()
       this.isEffectiveDate = false
     },
     async saveRates () {

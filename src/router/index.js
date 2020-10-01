@@ -19,7 +19,7 @@ const routes = [
     component: Providers
   },
   {
-    path: '/new-rovider',
+    path: '/new-provider',
     name: 'newProvider',
     component: NewProvider
   },

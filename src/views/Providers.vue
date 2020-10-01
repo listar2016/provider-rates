@@ -23,7 +23,7 @@
       </template>
       <template v-slot:item.actions="{ item }">
         <v-icon
-          small
+          x-small
           class="mr-2"
           color="primary"
           @click="editItem(item)"
@@ -31,7 +31,7 @@
           fas fa-edit
         </v-icon>
         <v-icon
-          small
+          x-small
           class="mr-2"
           color="primary"
           @click="showRate(item)"
@@ -39,7 +39,7 @@
           fas fa-dollar-sign
         </v-icon>
         <v-icon
-          small
+          x-small
           color="primary"
           @click="deleteItem(item)"
         >

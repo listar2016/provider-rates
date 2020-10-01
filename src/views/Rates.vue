@@ -8,7 +8,7 @@
     >
       <template v-slot:top>
         <v-toolbar flat color="white">
-          <v-toolbar-title>Reates List</v-toolbar-title>
+          <v-toolbar-title>Rates List</v-toolbar-title>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
           <v-btn
@@ -17,13 +17,13 @@
             class="btn mb-2"
             @click="dialog = true"
           >
-            New Rates
+            New Rate
           </v-btn>
         </v-toolbar>
       </template>
       <template v-slot:item.actions="{ item }">
         <v-icon
-          small
+          x-small
           color="primary"
           @click="deleteItem(item)"
         >
@@ -62,35 +62,48 @@ export default {
       },
       {
         text: 'Tax Status',
-        value: 'tax_status'
+        value: 'tax_status',
+        sortable: false
       },
       {
         text: 'Discipline',
-        value: 'discipline'
+        value: 'discipline',
+        sortable: false
       },
       {
         text: 'Service',
-        value: 'service'
+        value: 'service',
+        sortable: false
       },
       {
         text: 'Program',
-        value: 'program'
+        value: 'program',
+        sortable: false
+      },
+      {
+        text: 'Location',
+        value: 'location',
+        sortable: false
       },
       {
         text: 'Unit Type',
-        value: 'unit_type'
+        value: 'unit_type',
+        sortable: false
       },
       {
         text: 'Group',
-        value: 'group'
+        value: 'group',
+        sortable: false
       },
       {
         text: 'Bilingual',
-        value: 'bilingual'
+        value: 'bilingual',
+        sortable: false
       },
       {
         text: 'Rate amount',
-        value: 'rate_amount'
+        value: 'rate_amount',
+        sortable: false
       },
       {
         text: 'Actions',

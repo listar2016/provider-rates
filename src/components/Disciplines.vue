@@ -42,14 +42,14 @@ export default {
   },
   watch: {
     provider (value) {
-      this.form.certification = value.certification
+      this.form.disciplines = value.disciplines
     }
   },
   methods: {
     async save () {
       const params = {
         ...this.provider,
-        certification: this.form.certification
+        disciplines: this.form.disciplines
       }
       let response
       if (this.provider.id > 0) {
